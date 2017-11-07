@@ -2,7 +2,10 @@ import app.core.sentenceClassifer as sentenceClassifer
 from app.commons.validations import isListEmpty
 from app.stories.models import Story
 from app import app
+import jieba
+from app.core.nlp import sentenceTokenize
 
+Chinese = app.config["CHINESE"]
 
 class IntentClassifier(object):
     def __init__(self):
@@ -41,6 +44,7 @@ class IntentClassifier(object):
         return True
 
     def predict(self, sentence):
+        sentence = sentenceTokenize(sentence)
         predicted = sentenceClassifer.predict(sentence, self.PATH)
         if not predicted:
             return Story.objects(

@@ -5,8 +5,9 @@ from nltk import word_tokenize
 from flask import current_app as app
 
 from app.stories.models import Story
-from app.core.nlp import posTagger
+from app.core.nlp import posTagger,sentenceTokenize
 from app.core.featuresExtractor import extractFeatures
+
 
 
 def sentToFeatures(sent):
@@ -72,7 +73,7 @@ def extractLabels(predictedLabels):
 
 
 def predict(storyId, sentence):
-    tokenizedSentence = word_tokenize(sentence)
+    tokenizedSentence = sentenceTokenize(sentence)
     taggedToken = posTagger(sentence)
     tagger = pycrfsuite.Tagger()
     tagger.open("{}/{}.model".format(app.config["MODELS_DIR"], storyId))

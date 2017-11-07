@@ -9,12 +9,14 @@ class Config(object):
     DB_PASSWORD = ""
     # Web Server details
     WEB_SERVER_PORT = 8001
+    CHINESE = True
 
     # Intent Classifier model detials
     MODELS_DIR = "model_files"
     INTENT_MODEL_NAME = "intent.model"
     DEFAULT_FALLBACK_INTENT_NAME = "fallback"
     DEFAULT_WELCOME_INTENT_NAME = "init_conversation"
+    CHINESE = True
 
 
 class Development(Config):
