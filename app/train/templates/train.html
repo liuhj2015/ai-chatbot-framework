@@ -1,5 +1,6 @@
 <html>
 <head>
+    <mata charset="utf-8">
     <link rel="stylesheet" type="text/css" href="/static/commons/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/static/commons/css/style.css">
     <script src="/static/commons/js/jquery.min.js"></script>
@@ -55,11 +56,16 @@
     </div>
     <p class="flip">View labeled sentences<span class="glyphicon glyphicon-menu-down"></span></p>
     <div class="row new_story panel" id="work">
-        <ol>
+    
             {% for entry in labeledSentences %}
-            <li _id="{{ entry.id}}">{{ entry.data }} <a id="btnDeleteSentence" _id="{{ entry.id}}"> Delete</a></li>
+            <div _id="{{ entry.id}}">
+                {% for data in entry.data %}
+                <span>{{ ",".join(data)}}</span>
+                {% endfor%}
+
+                <a id="btnDeleteSentence" _id="{{ entry.id}}"> Delete</a></div>
             {% endfor %}
-        </ol>
+        
     </div>
     <div class="span4" id="instance">
     </div>

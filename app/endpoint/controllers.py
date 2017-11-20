@@ -69,6 +69,7 @@ def api():
     if requestJson:
 
         context = {}
+        print resultJson
         context["context"] = requestJson["context"]
 
         if app.config["DEFAULT_WELCOME_INTENT_NAME"] in requestJson.get(

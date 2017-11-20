@@ -15,6 +15,8 @@ train = Blueprint('train_blueprint', __name__,
 def home(storyId):
     story = Story.objects.get(id=ObjectId(storyId))
     labeledSentences = story.labeledSentences
+    for i in labeledSentences:
+        print i 
     return render_template(
         'train.html',
         storyId=storyId,

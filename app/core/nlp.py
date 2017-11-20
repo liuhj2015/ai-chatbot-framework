@@ -1,3 +1,4 @@
+#coding:utf-8
 from nltk.tag.perceptron import PerceptronTagger
 from nltk import word_tokenize
 import jieba
@@ -10,7 +11,6 @@ tagger = PerceptronTagger()
 
 
 Chinese = app.config["CHINESE"]
-print Chinese
 
 def posTaggerEnglish(sentence):
     tokenizedSentence = word_tokenize(sentence)
@@ -29,7 +29,8 @@ def posTagger(sentence):
 
 def posTaggerChinese(sentence):
     tokenizedSentence = jieba.posseg.cut(sentence)
-    posTaggedSentence = list(tokenizedSentence)
+    posTaggedSentence = [(token,postag) for token, postag in tokenizedSentence]
+    return posTaggedSentence
     
 
 def posTagAndLabelEnglish(sentence):

@@ -7,7 +7,8 @@ from sklearn.multiclass import OneVsRestClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.svm import LinearSVC
 from app.core.NLTKPreprocessor import NLTKPreprocessor
-
+from app.core.nlp import sentenceTokenize
+from app.commons.logger import logger
 
 def identity(arg):
     """
@@ -53,10 +54,8 @@ def predict(text, PATH):
             model = pickle.load(f)
     except IOError:
         return False
-
-    yhat = model.predict([
-        text
-    ])
+    logger.info(text)
+    yhat = model.predict([text])
     if yhat.any():
         return {
             "class": model.labels_.inverse_transform(yhat)[0][0],
